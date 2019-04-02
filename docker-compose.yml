@@ -1,0 +1,24 @@
+version: '3'
+services:
+  wordpress:
+    image: alpine
+    stdin_open: true
+    tty: true
+    ports:
+      - "22:22"
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: tutorial
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: wordpress
+  tutum:
+    image: tutum/hello-world
+    ports:
+      - "80:80"
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: tutorial
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: tutum
